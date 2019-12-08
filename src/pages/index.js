@@ -1,21 +1,24 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
+import {useSpring, animated} from 'react-spring'
+import {Spring} from 'react-spring/renderprops'
+import Toggle from '../components/Toggle'
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+function IndexPage(){
+  const props = useSpring({ config: { duration: 500 }, opacity: 1, from: {opacity: 0}})
+  
+  return (
+    <animated.div style={props}>
+      <Layout>
+        <SEO title="Home" />
+        <Toggle />
+        <p>This website is here to try and test some fun components + learn some new css.</p>
+      </Layout>
+    </animated.div>
+  )
+}
 
 export default IndexPage
